@@ -17,3 +17,15 @@ class GenericStockInfoArgs(BaseModel):
     stock_name: str = Field(
         description="Should be the name of a company whose stock information you want to get"
     )
+
+
+class ContactInfoArgs(BaseModel):
+    stock_name: str = Field(
+        description="Should be the name of a company whose contact information you want to get"
+    )
+
+
+class BusinessInfoArgs(BaseModel):
+    stock_name: str = Field(
+        description="Should be the name of a company whose business information you want to get"
+    )
