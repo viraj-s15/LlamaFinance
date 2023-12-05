@@ -13,6 +13,7 @@
     - [Command Line Arguments](#command-line-arguments)
   - [TODO](#todo)
     - [Completed](#completed)
+  - [Contributing](#contributing)
 
 ## About <a name = "about"></a>
 
@@ -66,3 +67,7 @@ poetry run python main.py
 
 ### Completed 
 - [ ] None
+
+## Contributing
+
+Feel free to open an issue and contribute
