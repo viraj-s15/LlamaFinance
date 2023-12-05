@@ -11,6 +11,8 @@
   - [Usage ](#usage-)
     - [General](#general)
     - [Command Line Arguments](#command-line-arguments)
+  - [TODO](#todo)
+    - [Completed](#completed)
 
 ## About <a name = "about"></a>
 
@@ -55,3 +57,12 @@ poetry run python main.py
 
 - --verbose : Its presence sets the LLM output to verbose
 - --temperature : Sets the temprature of the LLM, default value is 0 
+
+## TODO
+- [ ] Add Support for other open source llms
+- [ ] Add support for local llms (llama.cpp)
+- [ ] Create demo notebook for people to use
+- [ ] Create GUI for chat    
+
+### Completed 
+- [ ] None
