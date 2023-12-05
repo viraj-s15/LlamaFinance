@@ -1,11 +1,8 @@
 from langchain.tools import Tool, tool, StructuredTool
 from pydantic import BaseModel, Field
 import yfinance as yf
-import sys
 
-sys.path.insert(1, "../args/")
-
-from args import GetTickerArgs
+from args import GetTickerArgs, GenericStockInfoArgs
 
 
 @tool("ticker", args_schema=GetTickerArgs)
