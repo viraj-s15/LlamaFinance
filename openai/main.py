@@ -64,6 +64,7 @@ agent = initialize_agent(
     max_iterations=3,
     early_stopping_method="generate",
     memory=conversational_memory,
+    handle_parsing_errors="Check your output and make sure it conforms!",
 )
 
 while True:
