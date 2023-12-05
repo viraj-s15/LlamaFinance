@@ -4,11 +4,7 @@ import sys
 
 sys.path.insert(1, "../args/")
 
-from args import (
-    CompanyNewsArgs,
-    ContactInfoArgs,
-    BusinessInfoArgs,
-)
+from args import CompanyNewsArgs, ContactInfoArgs, BusinessInfoArgs, OfficerInfoArgs
 
 
 @tool("company_news", args_schema=CompanyNewsArgs)
@@ -51,3 +47,13 @@ def get_business_info(stock_name: str) -> str:
     info["Sector in Industry"] = ticker.info["sectorDisp"]
     info["About"] = ticker.info["longBusinessSummary"]
     return str(info)
+
+
+@tool("officer_info", args_schema=OfficerInfoArgs)
+def get_officer_info(stock_name: str) -> str:
+    """
+    Function which gets info about the officers i.e. CEO,CTO and so on
+    """
+    ticker = yf.Ticker(get_ticker(stock_name))
+    res = ticker.info["companyOfficers"]
+    return str(res)

@@ -1,4 +1,4 @@
-from langchain.tools import Tool, tool
+from langchain.tools import Tool, tool, StructuredTool
 from pydantic import BaseModel, Field
 import sys
 

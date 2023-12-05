@@ -29,3 +29,9 @@ class BusinessInfoArgs(BaseModel):
     stock_name: str = Field(
         description="Should be the name of a company whose business information you want to get"
     )
+
+
+class OfficerInfoArgs(BaseModel):
+    stock_name: str = Field(
+        description="Should be the name of a company whose officer information you want to get"
+    )
