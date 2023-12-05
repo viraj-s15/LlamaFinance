@@ -1,5 +1,4 @@
 # Managing Imports
-# setup import from env variables
 import os
 
 import pandas as pd
@@ -17,6 +16,7 @@ from tools.stock_business_info_tools import stock_business_tools
 # Relative imports from the tools directory
 from tools.stock_data_tools import stock_data_tools
 
+# setup import from env variables
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(dotenv_path=dotenv_path)
 
@@ -27,7 +27,6 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
 parser.add_argument("--temperature", type=float, default=0.0)
-# set temperature to a variable
 
 args = parser.parse_args()
 
