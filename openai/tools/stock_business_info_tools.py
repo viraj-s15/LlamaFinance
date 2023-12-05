@@ -1,9 +1,5 @@
 from langchain.tools import tool
 
-import sys
-
-sys.path.insert(1, "../args/")
-
 from args import CompanyNewsArgs, ContactInfoArgs, BusinessInfoArgs, OfficerInfoArgs
 
 
@@ -59,4 +55,9 @@ def get_officer_info(stock_name: str) -> str:
     return str(res)
 
 
-tools = [get_company_news, get_contact_information, get_business_info, get_officer_info]
+stock_business_tools = [
+    get_company_news,
+    get_contact_information,
+    get_business_info,
+    get_officer_info,
+]

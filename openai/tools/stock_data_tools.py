@@ -70,7 +70,7 @@ def get_historical_data_date_wise(stock_name: str, date: str) -> list[dict]:
 
 tool = StructuredTool.from_function(get_historical_data_date_wise)
 
-tools = [
+stock_data_tools = [
     get_ticker,
     get_generic_stock_information,
     get_historical_data_relative_time,
