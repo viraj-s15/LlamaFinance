@@ -1,6 +1,7 @@
 from langchain.tools import Tool, tool, StructuredTool
 from pydantic import BaseModel, Field
 import yfinance as yf
+import requests
 
 from args import GetTickerArgs, GenericStockInfoArgs
 
@@ -56,7 +57,9 @@ def get_historical_data_relative_time(stock_name: str, time_period: str) -> str:
     return res
 
 
-tool = StructuredTool.from_function(get_historical_data_relative_time)
+get_historical_data_relative_time_tool = StructuredTool.from_function(
+    get_historical_data_relative_time
+)
 
 
 def get_historical_data_date_wise(stock_name: str, date: str) -> list[dict]:
@@ -68,11 +71,13 @@ def get_historical_data_date_wise(stock_name: str, date: str) -> list[dict]:
     return str(res)
 
 
-tool = StructuredTool.from_function(get_historical_data_date_wise)
+get_historical_data_date_wise_tool = StructuredTool.from_function(
+    get_historical_data_date_wise
+)
 
 stock_data_tools = [
     get_ticker,
     get_generic_stock_information,
-    get_historical_data_relative_time,
-    get_historical_data_date_wise,
+    get_historical_data_relative_time_tool,
+    get_historical_data_date_wise_tool,
 ]
