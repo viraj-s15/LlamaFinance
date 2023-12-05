@@ -1,8 +1,8 @@
 from .args import (
-    GetTickerArgs,
-    GenericStockInfoArgs,
+    BusinessInfoArgs,
     CompanyNewsArgs,
     ContactInfoArgs,
-    BusinessInfoArgs,
+    GenericStockInfoArgs,
+    GetTickerArgs,
     OfficerInfoArgs,
 )

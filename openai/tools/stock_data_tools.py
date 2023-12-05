@@ -1,9 +1,8 @@
-from langchain.tools import Tool, tool, StructuredTool
-from pydantic import BaseModel, Field
-import yfinance as yf
 import requests
-
-from args import GetTickerArgs, GenericStockInfoArgs
+import yfinance as yf
+from args import GenericStockInfoArgs, GetTickerArgs
+from langchain.tools import StructuredTool, Tool, tool
+from pydantic import BaseModel, Field
 
 
 @tool("ticker", args_schema=GetTickerArgs)

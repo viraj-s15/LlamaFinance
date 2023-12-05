@@ -1,6 +1,6 @@
-from langchain.tools import tool
 import yfinance as yf
-from args import CompanyNewsArgs, ContactInfoArgs, BusinessInfoArgs, OfficerInfoArgs
+from args import BusinessInfoArgs, CompanyNewsArgs, ContactInfoArgs, OfficerInfoArgs
+from langchain.tools import tool
 
 
 @tool("company_news", args_schema=CompanyNewsArgs)
