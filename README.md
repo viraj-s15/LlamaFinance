@@ -51,6 +51,8 @@ To just run the script on the terminal
 cd openai
 poetry run python main.py
 ```
+![image](https://github.com/viraj-s15/stock-gpt/assets/79002760/4ee369f6-ef48-44ff-9434-ab4036bbb644)
+
 
 ### Command Line Arguments<a name = "command-line-arguments"></a>
 
