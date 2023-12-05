@@ -1,5 +1,6 @@
 from langchain.tools import Tool, tool, StructuredTool
 from pydantic import BaseModel, Field
+import yfinance as yf
 import sys
 
 sys.path.insert(1, "../args/")
@@ -47,3 +48,34 @@ def get_generic_stock_information(stock_name: str) -> str:
     info["Target Median Price"] = ticker.info["targetMedianPrice"]
 
     return str(info)
+
+
+def get_historical_data_relative_time(stock_name: str, time_period: str) -> str:
+    """
+    Function which historical data with respect to the the time period the accepted values are 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
+    """
+    ticker = yf.Ticker(get_ticker(stock_name))
+    res = ticker.history(period=time_period)
+    return res
+
+
+tool = StructuredTool.from_function(get_historical_data_relative_time)
+
+
+def get_historical_data_date_wise(stock_name: str, date: str) -> list[dict]:
+    """
+    Function which gets news about the company, the date must be in the format YYYY-MM-DD, the date must be in the past
+    """
+    ticker = yf.Ticker(get_ticker(stock_name))
+    res = ticker.history(start=date, end=None)
+    return str(res)
+
+
+tool = StructuredTool.from_function(get_historical_data_date_wise)
+
+tools = [
+    get_ticker,
+    get_generic_stock_information,
+    get_historical_data_relative_time,
+    get_historical_data_date_wise,
+]

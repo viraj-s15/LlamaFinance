@@ -57,3 +57,6 @@ def get_officer_info(stock_name: str) -> str:
     ticker = yf.Ticker(get_ticker(stock_name))
     res = ticker.info["companyOfficers"]
     return str(res)
+
+
+tools = [get_company_news, get_contact_information, get_business_info, get_officer_info]
