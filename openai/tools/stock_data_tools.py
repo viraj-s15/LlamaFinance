@@ -1,13 +1,13 @@
 from langchain.tools import Tool, tool
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import sys
 
 sys.path.insert(1, "../args/")
 
-from args import GetTicker
+from args import GetTickerArgs
 
 
-@tool("ticker", args_schema=GetTicker)
+@tool("ticker", args_schema=GetTickerArgs)
 def get_ticker(company_name) -> str:
     """
     Provides the ticker for a given company name
@@ -22,7 +22,7 @@ def get_ticker(company_name) -> str:
     return company_code
 
 
-@tool("generic_stock_information")
+@tool("generic_stock_information", args_schema=GenericStockInfoArgs)
 def get_generic_stock_information(stock_name: str) -> str:
     """
     Function which retrieves general information related to the stock, such as current price,etc
