@@ -26,7 +26,14 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
+parser.add_argument("--temperature", type=float, default=0.0)
+# set temperature to a variable
+
 args = parser.parse_args()
+
+temperature = 0.0
+if args.temperature:
+    temperature = args.temperature
 
 verbose = False
 if args.verbose:
@@ -36,7 +43,7 @@ if args.verbose:
 llm = ChatOpenAI(
     openai_api_key=openai_api_key,
     # temperature is set to 0 to prevent the model from generating a response that is not related to the stock market
-    temperature=0,
+    temperature=temperature,
     # gpt-3.5-turbo because that is the only api key I have
     model_name="gpt-3.5-turbo",
 )
