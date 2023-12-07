@@ -42,7 +42,6 @@ pydantic==2.5.2
 pydantic_core==2.14.5
 python-dateutil==2.8.2
 python-dotenv==1.0.0
-pytorch-triton-rocm==2.1.0
 pytz==2023.3.post1
 PyYAML==6.0.1
 requests==2.31.0
@@ -52,7 +51,6 @@ soupsieve==2.5
 SQLAlchemy==2.0.23
 sympy==1.12
 tenacity==8.2.3
-torch==2.1.1+rocm5.6
 tqdm==4.66.1
 typing-inspect==0.9.0
 typing_extensions==4.8.0

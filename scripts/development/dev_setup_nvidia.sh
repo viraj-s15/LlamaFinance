@@ -7,6 +7,7 @@ echo "Activating the virtual environment"
 source .venv/bin/activate
 
 echo "Installing dependencies"
+pip install torch torchvision torchaudio
 pip install -r requirements/requirements_nvidia.txt
 
 echo "Completed Installation!"
