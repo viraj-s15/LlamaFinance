@@ -14,7 +14,7 @@ import sys
 import argparse
 import logging
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
 
 try:
     sys.path.append("../../src/")
@@ -75,8 +75,23 @@ agent = initialize_agent(
     handle_parsing_errors="Check your output and make sure it conforms!",
 )
 
+
+print("Welcome to the stock market chatbot!")
+print("Type 'exit' to exit the program.")
+print("Type 'help' to see a list of flags.")
+print("Remember: Yahoo Finance is a bit slow at times so please be patient")
 while True:
     user_input = input(">>> ")
+    if user_input == "help":
+        print(
+            "Flags:\n"
+            + "--verbose: Sets langchain output to verbose\n"
+            + "--temperature: The temperature of the model\n"
+            + "--model: The model to use\n"
+            + "--max_iterations: The maximum number of iterations the model is allowed to make\n"
+            + "--message_history: The number of messages to store in the conversation history"
+        )
+        continue
     if user_input == "exit":
         break
     response = agent(user_input)
