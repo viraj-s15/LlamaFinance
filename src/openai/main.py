@@ -11,6 +11,11 @@ from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.tools import Tool, tool
 from pydantic import BaseModel, Field
+import sys
+
+sys.path.append("../../src/")
+
+
 from tools.stock_business_info_tools import stock_business_tools
 
 # Relative imports from the tools directory
