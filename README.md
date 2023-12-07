@@ -7,13 +7,13 @@
   - [About ](#about-)
   - [Getting Started ](#getting-started-)
     - [Prerequisites](#prerequisites)
-    - [Installing](#installing)
+    - [Installing Dependencies for development](#installing-dependencies-for-development)
   - [Usage ](#usage-)
     - [General](#general)
     - [Command Line Arguments](#command-line-arguments)
-  - [TODO](#todo)
-    - [Completed](#completed)
+    - [Other helpful commands](#other-helpful-commands)
   - [Contributing](#contributing)
+  - [Attribution](#attribution)
 
 ## About <a name = "about"></a>
 
@@ -21,22 +21,28 @@ A Custom Chatgpt with Multiple Stock based Tools at its disposal
 
 ## Getting Started <a name = "getting_started"></a>
 
-Make sure you have poetry installed, if youre using Arch Linux, install it with the command below
-
 ### Prerequisites
 
-```
-yay -S python-poetry
-```
+If you want to use GPT, make sure you change the name of the `src/openai/.example_env` to `src/openai/.env` and add your Openai API key
 
-Make sure you change the name of the `.example_env`
-to `.env` and add your Openai API key
+### Installing Dependencies for development
 
-### Installing
+Downloading dependencies for AMD Systems
 
 ```
-cd stock-gpt
-poetry install
+bash scripts/dev_setup_amd.sh
+```
+
+Downloading dependencies for Nvidia Systems
+
+```
+bash scripts/dev_setup_nvidia.sh
+```
+
+Downloading dependencies For GPT related development 
+
+```
+bash scripts/dev_setup_openai.sh
 ```
 
 You now have your dependencies setup
@@ -45,14 +51,11 @@ You now have your dependencies setup
 
 ### General<a name = "general"></a>
 
-To just run the script on the terminal
+One script will setup the dependencies and get you up and running.
 
 ```
-cd openai
-poetry run python main.py
+bash scripts/usage/run_openai.sh
 ```
-![image](https://github.com/viraj-s15/stock-gpt/assets/79002760/4ee369f6-ef48-44ff-9434-ab4036bbb644)
-
 
 ### Command Line Arguments<a name = "command-line-arguments"></a>
 
@@ -60,16 +63,17 @@ poetry run python main.py
 
 - --verbose : Its presence sets the LLM output to verbose
 - --temperature : Sets the temprature of the LLM, default value is 0 
+- --model: The GPT model you want to use
+- --max_iterations: The maximum number of iterations the model is allowed to make
+- --message_history: The number of messages to store in the conversation history
 
-## TODO
-- [ ] Add Support for other open source llms
-- [ ] Add support for local llms (llama.cpp)
-- [ ] Create demo notebook for people to use
-- [ ] Create GUI for chat    
-
-### Completed 
-- [ ] None
+### Other helpful commands
+- exit : Exits the chat application
+- help : Gives information of all available options for running the script
 
 ## Contributing
 
-Feel free to open an issue and contribute
+Refer <a href="">our contribution docs</a>
+
+## Attribution
+This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
