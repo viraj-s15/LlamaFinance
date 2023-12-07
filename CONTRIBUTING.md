@@ -162,8 +162,7 @@ If you think our documentation needs improvement, go ahead and submit a PR.
 ## Styleguides
 ### Commit Messages
 
-<script src="https://gist.github.com/ericavonb/3c79e5035567c8ef3267.js"></script>
-
+<a href="https://gist.github.com/ericavonb/3c79e5035567c8ef3267">Commits Style Guide </a>
 
 ## Join The Project Team
 Wanna work on it long term? Get in touch with me
