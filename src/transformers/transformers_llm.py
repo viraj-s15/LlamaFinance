@@ -52,17 +52,18 @@ verbose = False
 if args.verbose:
     verbose = True
 
-model = AutoModelForCausalLM.from_pretrained(args.model,cache_dir=args.cache_dir)
-tokenizer = AutoTokenizer.from_pretrained(args.model,cache_dir=args.cache_dir)
+model = AutoModelForCausalLM.from_pretrained(args.model, cache_dir=args.cache_dir)
+tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache_dir)
 
 text_generation_pipeline = pipeline(
-    model=model, tokenizer=tokenizer,
+    model=model,
+    tokenizer=tokenizer,
     # Langchain needs full text
-    return_full_text=True,  
-    task='text-generation',
+    return_full_text=True,
+    task="text-generation",
     temperature=args.temperature,
-    max_new_tokens=args.max_new_tokens,,  
-    repetition_penalty=args.repetition_penalty,  
+    max_new_tokens=args.max_new_tokens,
+    repetition_penalty=args.repetition_penalty,
 )
 
 llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
