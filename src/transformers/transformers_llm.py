@@ -31,7 +31,7 @@ except ImportError as e:
 try:
     dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
     load_dotenv(dotenv_path=dotenv_path)
-    openai_api_key = os.getenv("HUGGINGFACE_ACCESS_TOKEN")
+    huggingface_access_token = os.getenv("HUGGINGFACE_ACCESS_TOKEN")
 except Exception as e:
     logging.error(f"Error loading environment variables: {e}")
 
@@ -52,8 +52,8 @@ verbose = False
 if args.verbose:
     verbose = True
 
-model = AutoModelForCausalLM.from_pretrained(args.model, cache_dir=args.cache_dir)
-tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache_dir)
+model = AutoModelForCausalLM.from_pretrained(args.model, cache_dir=args.cache_dir,token=huggingface_access_token)
+tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache_dir,token=huggingface_access_token)
 
 text_generation_pipeline = pipeline(
     model=model,
