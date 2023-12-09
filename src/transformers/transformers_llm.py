@@ -14,8 +14,9 @@ import sys
 import argparse
 import logging
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from huggingface_hub import login
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 
 
 try:
@@ -32,6 +33,7 @@ try:
     dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
     load_dotenv(dotenv_path=dotenv_path)
     huggingface_access_token = os.getenv("HUGGINGFACE_ACCESS_TOKEN")
+    login(token=huggingface_access_token)
 except Exception as e:
     logging.error(f"Error loading environment variables: {e}")
 
@@ -39,7 +41,7 @@ except Exception as e:
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
 parser.add_argument("--temperature", type=float, default=0.0)
-parser.add_argument("--model", type=str, default="meta-llama/llama-2-7B-chat-hf")
+parser.add_argument("--model", type=str, default="meta-llama/Llama-2-7b-chat-hf")
 parser.add_argument("--max_iterations", type=int, default=3)
 parser.add_argument("--message_history", type=str, default=5)
 parser.add_argument("--cache-dir", type=str, default=None)
@@ -52,8 +54,15 @@ verbose = False
 if args.verbose:
     verbose = True
 
-model = AutoModelForCausalLM.from_pretrained(args.model, cache_dir=args.cache_dir,token=huggingface_access_token)
-tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache_dir,token=huggingface_access_token)
+logging.info("Loading model and tokenizer")
+model = AutoModelForCausalLM.from_pretrained(
+    args.model,
+    cache_dir=args.cache_dir,
+)
+tokenizer = AutoTokenizer.from_pretrained(
+    args.model,
+    cache_dir=args.cache_dir,
+)
 
 text_generation_pipeline = pipeline(
     model=model,
