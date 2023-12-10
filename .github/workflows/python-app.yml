@@ -23,9 +23,8 @@ jobs:
         python-version: "3.11"
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install poetry
-        poetry install 
+        python -m pip install --upgrade pip 
+        bash scripts/developmet/dev_setup_openai.sh
     - name: Black Check
       # You may pin to the exact commit or the version.
       # uses: jpetrucciani/black-check@d67cebf5183542e6b451c9340e0c0a55145ac242
