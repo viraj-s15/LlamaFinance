@@ -46,7 +46,7 @@ except Exception as e:
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
-parser.add_argument("--temperature", type=float, default=0)
+parser.add_argument("--temperature", type=float, default=0.1)
 parser.add_argument("--model", type=str, default="meta-llama/Llama-2-7b-chat-hf")
 parser.add_argument("--max_iterations", type=int, default=3)
 parser.add_argument("--message_history", type=str, default=5)
