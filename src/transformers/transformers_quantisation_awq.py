@@ -41,7 +41,7 @@ except Exception as e:
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
 parser.add_argument("--use_flash_attention", action="store_true")
-parser.add_argument("--temperature", type=float, default=0.01)
+parser.add_argument("--temperature", type=float, default=0.0)
 parser.add_argument("--model", type=str, default="TheBloke/zephyr-7B-alpha-AWQ")
 parser.add_argument("--max_iterations", type=int, default=3)
 parser.add_argument("--message_history", type=str, default=5)
