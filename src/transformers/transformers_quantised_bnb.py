@@ -49,13 +49,13 @@ parser.add_argument("--temperature", type=float, default=0.0)
 parser.add_argument("--model", type=str, default="meta-llama/Llama-2-7b-chat-hf")
 parser.add_argument("--max_iterations", type=int, default=3)
 parser.add_argument("--message_history", type=str, default=5)
-parser.add_argument("--cache-dir", type=str, default=None)
+parser.add_argument("--cache_dir", type=str, default=None)
 parser.add_argument("--max-new-tokens", type=int, default=512)
 parser.add_argument("--repetition-penalty", type=float, default=1.1)
-parser.add_argument("--load-in-4bit", action="store_true")
-parser.add_argument("--load-in-8bit", action="store_true")
-parser.add_argument("--quant-dtype-4bit", type=str, default="fp4")
-parser.add_argument("--compute-dtype-4bit", type=str, default="fp16")
+parser.add_argument("--load_in_4bit", action="store_true")
+parser.add_argument("--load_in_8bit", action="store_true")
+parser.add_argument("--quant_dtype_4bit", type=str, default="fp4")
+parser.add_argument("--compute_dtype_4bit", type=str, default="fp16")
 
 args = parser.parse_args()
 
@@ -63,7 +63,7 @@ verbose = False
 if args.verbose:
     verbose = True
 
-if args.compute_dtype_4bit and args.load-in-8bit:
+if args.compute_dtype_4bit and args.load_in_8bit:
     logging.error("8bit quant only supports int8, other dtypes can only be used with 4bit quant")
     sys.exit(1)
 
@@ -83,7 +83,7 @@ switch (args.compute_dtype_4bit):
         sys.exit(1)
 
 
-if args.quant_dtype_4bit and args.load-in-8bit:
+if args.quant_dtype_4bit and args.load_in_8bit:
     logging.error("8bit quant only supports int8, fp4 can only be used with 4bit quant")
     sys.exit(1)
 
@@ -170,12 +170,12 @@ while True:
             + "--max_iterations: The maximum number of iterations the model is allowed to make\n"
             + "--message_history: The number of messages to store in the conversation history"
             + "--cache_dir: The cache directory to use\n"
-            + "--max-new-tokens: The maximum number of new tokens to generate\n"
-            + "--repetition-penalty: The repetition penalty to use\n"
-            + "--load-in-4bit: Load the model in 4bit\n"
-            + "--load-in-8bit: Load the model in 8bit\n"
-            + "--quant-dtype-4bit: The quant dtype to use for 4bit quant, either 'nf4' or 'fp4'\n"
-            + "--compute-dtype-4bit: The compute dtype to use for 4bit quant, either 'fp16', 'fp32' or 'fp64'\n"
+            + "--max_new_tokens: The maximum number of new tokens to generate\n"
+            + "--repetition_penalty: The repetition penalty to use\n"
+            + "--load_in_4bit: Load the model in 4bit\n"
+            + "--load_in_8bit: Load the model in 8bit\n"
+            + "--quant_dtype_4bit: The quant dtype to use for 4bit quant, either 'nf4' or 'fp4'\n"
+            + "--compute_dtype_4bit: The compute dtype to use for 4bit quant, either 'fp16', 'fp32' or 'fp64'\n"
             + "--help: Shows this message\n"
         )
         continue
