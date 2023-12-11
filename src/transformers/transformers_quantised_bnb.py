@@ -19,6 +19,7 @@ from transformers import (
     pipeline,
     BitsAndBytesConfig,
 )
+import torch
 from huggingface_hub import login
 
 logging.basicConfig(level=logging.INFO)
@@ -64,20 +65,19 @@ if args.verbose:
     verbose = True
 
 if args.compute_dtype_4bit and args.load_in_8bit:
-    logging.error("8bit quant only supports int8, other dtypes can only be used with 4bit quant")
+    logging.error(
+        "8bit quant only supports int8, other dtypes can only be used with 4bit quant"
+    )
     sys.exit(1)
 
 compute_dtype_4bit = None
 match args.compute_dtype_4bit:
     case "fp16":
         compute_dtype_4bit = torch.float16
-        break
     case "fp32":
         compute_dtype_4bit = torch.float32
-        break
     case "fp64":
         compute_dtype_4bit = torch.float64
-        break
     case _:
         logging.error("Invalid compute dtype for 4bit quant")
         sys.exit(1)
@@ -91,8 +91,9 @@ if args.load_in_4bit and args.load_in_8bit:
     logging.error("Cannot load in both 4bit and 8bit")
     sys.exit(1)
 
-bnb_config = bitsandbytesconfig(
-    logging.info("No flag provided,loading in 4bit")
+
+logging.info("No flag provided,loading in 4bit")
+bnb_config = BitsAndBytesConfig(
     load_in_4bit=true,
     bnb_4bit_quant_type=args.quant_dtype_4bit,
     bnb_4bit_compute_dtype=torch.float16,
