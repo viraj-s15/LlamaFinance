@@ -64,8 +64,7 @@ model = AutoModelForCausalLM.from_pretrained(
     args.model, cache_dir=args.cache_dir, device_map="cuda"
 )
 tokenizer = AutoTokenizer.from_pretrained(
-    args.model,
-    cache_dir=args.cache_dir,
+    args.model, cache_dir=args.cache_dir, use_flash_attention2=flash_attention
 )
 
 text_generation_pipeline = pipeline(
@@ -75,6 +74,7 @@ text_generation_pipeline = pipeline(
     return_full_text=True,
     task="text-generation",
     temperature=args.temperature,
+    do_sample=True,
     max_new_tokens=args.max_new_tokens,
     repetition_penalty=args.repetition_penalty,
 )
