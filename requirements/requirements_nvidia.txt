@@ -60,3 +60,6 @@ urllib3==2.1.0
 webencodings==0.5.1
 yarl==1.9.4
 yfinance==0.2.33
+accelerate @ git+https://github.com/huggingface/accelerate.git@9964f90fd7d50577998a22f3dba8590e644d255b
+bitsandbytes==0.41.3
+sentencepiece==0.1.99
