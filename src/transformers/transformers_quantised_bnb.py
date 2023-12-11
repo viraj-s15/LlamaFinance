@@ -47,7 +47,7 @@ except Exception as e:
 parser = argparse.ArgumentParser()
 parser.add_argument("--verbose", action="store_true")
 parser.add_argument("--temperature", type=float, default=0.1)
-parser.add_argument("--model", type=str, default="meta-llama/Llama-2-7b-chat-hf")
+parser.add_argument("--model", type=str, default="mistralai/Mistral-7B-Instruct-v0.1")
 parser.add_argument("--max_iterations", type=int, default=3)
 parser.add_argument("--message_history", type=str, default=5)
 parser.add_argument("--cache_dir", type=str, default=None)
@@ -57,6 +57,8 @@ parser.add_argument("--load_in_4bit", action="store_true")
 parser.add_argument("--load_in_8bit", action="store_true")
 parser.add_argument("--quant_dtype_4bit", type=str, default="fp4")
 parser.add_argument("--compute_dtype_4bit", type=str, default="fp16")
+parser.add_argument("--device", type=str, default="0")
+
 
 args = parser.parse_args()
 
@@ -135,6 +137,7 @@ text_generation_pipeline = pipeline(
     temperature=args.temperature,
     max_new_tokens=args.max_new_tokens,
     repetition_penalty=args.repetition_penalty,
+    device=args.device,
 )
 
 llm = HuggingFacePipeline(pipeline=text_generation_pipeline)
@@ -180,6 +183,7 @@ while True:
             + "--load_in_8bit: Load the model in 8bit\n"
             + "--quant_dtype_4bit: The quant dtype to use for 4bit quant, either 'nf4' or 'fp4'\n"
             + "--compute_dtype_4bit: The compute dtype to use for 4bit quant, either 'fp16', 'fp32' or 'fp64'\n"
+            + "--device: The device to use, default = 0\n"
             + "--help: Shows this message\n"
         )
         continue
