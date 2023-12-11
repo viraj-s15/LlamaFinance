@@ -116,10 +116,13 @@ if args.load_in_8bit:
 logging.info("Loading model and tokenizer")
 model = AutoModelForCausalLM.from_pretrained(
     args.model,
+    quantization_config=bnb_config,
+    trust_remote_code=True,
     cache_dir=args.cache_dir,
 )
 tokenizer = AutoTokenizer.from_pretrained(
     args.model,
+    trust_remote_code=True,
     cache_dir=args.cache_dir,
 )
 
