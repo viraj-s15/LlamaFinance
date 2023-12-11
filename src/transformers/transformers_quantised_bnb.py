@@ -68,7 +68,7 @@ if args.compute_dtype_4bit and args.load_in_8bit:
     sys.exit(1)
 
 compute_dtype_4bit = None
-switch (args.compute_dtype_4bit):
+match args.compute_dtype_4bit:
     case "fp16":
         compute_dtype_4bit = torch.float16
         break
@@ -78,7 +78,7 @@ switch (args.compute_dtype_4bit):
     case "fp64":
         compute_dtype_4bit = torch.float64
         break
-    default:
+    case _:
         logging.error("Invalid compute dtype for 4bit quant")
         sys.exit(1)
 
