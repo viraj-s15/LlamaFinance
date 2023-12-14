@@ -49,6 +49,11 @@ You now have your dependencies setup
 
 ## Usage <a name = "usage"></a>
 
+```
+>>> Give me the current stock price of TSLA
+The current stock price of TSLA is $243.84.
+```
+
 ### General<a name = "general"></a>
 
 One script will setup the dependencies and get you up and running.
