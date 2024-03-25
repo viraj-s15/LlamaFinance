@@ -71,21 +71,26 @@ async def chat_endpoint(user_input: UserInput, verbose: bool = False, temperatur
 
 @app.get("/test")
 async def test(verbose: bool = False, temperature: float = 0.0, model: str = "gpt-3.5-turbo", max_iterations: int = 3, message_history: int = 5):
+    logging.info("Starting test endpoint")
     try:
+        logging.info("Creating ChatOpenAI instance")
         llm = ChatOpenAI(
             openai_api_key=openai_api_key,
             temperature=temperature,
             model_name=model,
         )
 
+        logging.info("Combining tools")
         tools = stock_data_tools + stock_business_tools
 
+        logging.info("Creating conversational memory")
         conversational_memory = ConversationBufferWindowMemory(
             memory_key="chat_history",
             k=message_history,
             return_messages=True
         )
 
+        logging.info("Initializing agent")
         agent = initialize_agent(
             agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             tools=tools,
@@ -97,9 +102,11 @@ async def test(verbose: bool = False, temperature: float = 0.0, model: str = "gp
             handle_parsing_errors="Check your output and make sure it conforms!",
         )
 
+        logging.info("Initialization successful")
         return {"message": "Initialization successful"}
 
     except Exception as e:
+        logging.error(f"Error in test endpoint: {e}")
         return {"error": str(e)}
 
 
