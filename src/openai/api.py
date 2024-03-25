@@ -69,5 +69,39 @@ async def chat_endpoint(user_input: UserInput, verbose: bool = False, temperatur
     response = agent(user_input.text)
     return {"response": response["output"]}
 
+@app.get("/test")
+async def test(verbose: bool = False, temperature: float = 0.0, model: str = "gpt-3.5-turbo", max_iterations: int = 3, message_history: int = 5):
+    try:
+        llm = ChatOpenAI(
+            openai_api_key=openai_api_key,
+            temperature=temperature,
+            model_name=model,
+        )
+
+        tools = stock_data_tools + stock_business_tools
+
+        conversational_memory = ConversationBufferWindowMemory(
+            memory_key="chat_history",
+            k=message_history,
+            return_messages=True
+        )
+
+        agent = initialize_agent(
+            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            tools=tools,
+            llm=llm,
+            verbose=verbose,
+            max_iterations=max_iterations,
+            early_stopping_method="generate",
+            memory=conversational_memory,
+            handle_parsing_errors="Check your output and make sure it conforms!",
+        )
+
+        return {"message": "Initialization successful"}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
