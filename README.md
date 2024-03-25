@@ -1,8 +1,8 @@
-# Stock GPT
+# LlamaFinance
 
 ## Table of Contents
 
-- [Stock GPT](#stock-gpt)
+- [LlamaFinance](#stock-gpt)
   - [Table of Contents](#table-of-contents)
   - [About ](#about-)
   - [Getting Started ](#getting-started-)
